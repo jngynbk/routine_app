@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:routine_app/screens/todo_screen.dart';
 
 class GroupItemWidget extends StatelessWidget {
   final String title;
@@ -14,9 +13,7 @@ class GroupItemWidget extends StatelessWidget {
     return ListTile(
       title: Text(title),
       onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => ToDoScreen(title: title)),
-        );
+        // Here you can define what happens when the item is tapped.
       },
     );
   }

@@ -43,10 +43,21 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Title'),
+        title: const Text('Title'),
         elevation: 2,
         surfaceTintColor: Colors.white,
         shadowColor: Colors.black26,
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.add),
+            onPressed: () => showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return GroupDialogWidget(onTitleAdded: _addNewGroup);
+              },
+            ),
+          )
+        ],
       ),
       body: ListView.builder(
         itemCount: _groupTitles.length,
@@ -61,8 +72,8 @@ class _HomeScreenState extends State<HomeScreen> {
             background: Container(
               color: Colors.red,
               alignment: Alignment.centerRight,
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
-              child: Icon(Icons.delete, color: Colors.white),
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: const Icon(Icons.delete, color: Colors.white),
             ),
             child: GroupItemWidget(title: item),
           );
@@ -70,12 +81,11 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return GroupDialogWidget(onTitleAdded: _addNewGroup);
-          },
-        ),
-        tooltip: 'Add Group',
+            context: context,
+            builder: (BuildContext context) {
+              return GroupDialogWidget(onTitleAdded: _addNewGroup);
+            }),
+        tooltip: 'Add a new group',
         child: const Icon(Icons.add),
       ),
     );
